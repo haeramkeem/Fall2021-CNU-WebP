@@ -11,29 +11,29 @@
 <body>
     <div id="modal-container">
         <label class="modal-input-label">
-            상품 이미지 : <input type="image">
+            상품 이미지 : <input type="file" accept="image/*" id="image-input">
         </label>
         <label class="modal-input-label">
-            상품 이름 : <input type="text">
+            상품 이름 : <input type="text" id="name-input">
         </label>
         <label class="modal-input-label">
-            상품 가격 : <input type="text" size="10">100원 이상이어야 함
+            상품 가격 : <input type="text" size="10" id="price-input">100원 이상이어야 함
         </label>
         <label class="modal-input-label">
-            상품 개수 : <input type="text" size="5">최대 100개 이하까지 등록 가능
+            상품 개수 : <input type="text" size="5" id="item-num-input">최대 100개 이하까지 등록 가능
         </label>
         <div class="">
             <br>
-            <button>저장</button>
-            <button>취소</button>
+            <button id="save-item-btn">저장</button>
+            <button id="cancel-item-btn">취소</button>
         </div>
     </div>
     <div class="">
-        <button id="add-prod-btn">상품 등록하기</button>
+        <button id="add-item-btn">상품 등록하기</button>
     </div>
     <hr>
     <div class="">
-        <div class="item-container">
+        <div id="item-container">
 
                 <div class="item-box">
                     <table class="">
@@ -41,7 +41,7 @@
                             <input type="checkbox">
                         </td></tr>
                         <tr><td class="item-cell item-img">
-                            상품 이미지
+                            <img src="" alt="">
                         </td></tr>
                         <tr><td class="item-cell item-text">
                             창녀
