@@ -4,10 +4,103 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Style sheet -->
+    <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="modal-container">
+        <label class="modal-input-label">
+            상품 이미지 : <input type="image">
+        </label>
+        <label class="modal-input-label">
+            상품 이름 : <input type="text">
+        </label>
+        <label class="modal-input-label">
+            상품 가격 : <input type="text" size="10">100원 이상이어야 함
+        </label>
+        <label class="modal-input-label">
+            상품 개수 : <input type="text" size="5">최대 100개 이하까지 등록 가능
+        </label>
+        <div class="">
+            <br>
+            <button>저장</button>
+            <button>취소</button>
+        </div>
+    </div>
+    <div class="">
+        <button id="add-prod-btn">상품 등록하기</button>
+    </div>
+    <hr>
+    <div class="">
+        <div class="item-container">
+
+                <div class="item-box">
+                    <table class="">
+                        <tr><td class="item-cell item-text">
+                            <input type="checkbox">
+                        </td></tr>
+                        <tr><td class="item-cell item-img">
+                            상품 이미지
+                        </td></tr>
+                        <tr><td class="item-cell item-text">
+                            창녀
+                        </td></tr>
+                        <tr><td class="item-cell item-text">
+                            1000원
+                        </td></tr>
+                        <tr><td class="item-cell item-text">
+                            <input type="text" size="10"> 개
+                        </td></tr>
+                        <tr><td class="item-cell item-text">
+                            합계 <span>2000</span>원
+                        </td></tr>
+                        <tr><td class="item-cell item-text">
+                            총 <span>80</span>개 남음
+                        </td></tr>
+                    </table>
+                </div>
+
+        </div>
+        <button id="add-cart-btn">장바구니 담기</button>
+    </div>
+    <hr>
+    <div class="">
+        <label>
+            <input type="checkbox" id="select-all-btn">
+            전체 선택
+        </label>
+        <button id="delete-selection-btn">선택 삭제</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>선택</th>
+                    <th>상품 이미지</th>
+                    <th>상품 이름</th>
+                    <th>상품 개별 가격(원)</th>
+                    <th>상품 개수</th>
+                    <th>상품 구매 가격(원)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>상품 이미지</td>
+                    <td>창녀</td>
+                    <td>1000</td>
+                    <td>
+                        <input type="text">
+                        <button>변경</button>
+                    </td>
+                    <td>2000</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <th colspan="5">총 가격</th>
+                <td></td>
+            </tfoot>
+        </table>
+    </div>
     <script src="./index.js"></script>
 </body>
 </html>

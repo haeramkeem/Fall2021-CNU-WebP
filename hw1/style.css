@@ -1,6 +1,55 @@
+/* Globals */
 * {
-    padding: none;
-    border: none;
-    margin: none;
-    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: content-box;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Components */
+/* Modal */
+#modal-container {
+    width: 400px;
+    height: 150px;
+    padding: 30px;
+    border-width: 2px;
+    border-style: outset;
+    border-radius: 5px;
+    background-color: skyblue;
+    position: fixed;
+    display: none;
+}
+
+.modal-input-label {
+    display: block;
+    margin-bottom: 3px;
+}
+
+/* Product Items */
+.item-box {
+    padding: 5px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 10px;
+}
+.item-cell {
+    width: 110px;
+    
+}
+
+.item-text {
+    height: 30px;
+}
+
+.item-img {
+    height: auto;
 }
