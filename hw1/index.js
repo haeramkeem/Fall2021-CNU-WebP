@@ -1,12 +1,15 @@
+/* Shortcuts */
+const id = (idName) => document.getElementById(idName);
+
 /* Modal */
 // Show modal
-document.getElementById("add-item-btn").addEventListener("click", (event) => {
+id("add-item-btn").addEventListener("click", (event) => {
     event.preventDefault();
     document.getElementById("modal-container").style.display = "block";
 });
 
-// Close Modal
-document.getElementById("cancel-item-btn").addEventListener("click", (event) => {
+// Cancel
+id("cancel-item-btn").addEventListener("click", (event) => {
     event.preventDefault();
     closeModal();
 });
