@@ -1,10 +1,12 @@
 /* Global variables */
 const items = [];
+const cart = {};
 
 /* Shortcuts */
 const id = (idName) => document.getElementById(idName);
 const make = (tagName) => document.createElement(tagName);
 const text = (textContent) => document.createTextNode(textContent);
+const clas = (className) => document.querySelectorAll(`.${className}`);
 
 /* Modal */
 // Show modal
@@ -36,7 +38,7 @@ function closeModal() {
 // Save
 id("save-item-btn").addEventListener("click", (event) => {
     event.preventDefault();
-    if(saveItem()) { closeModal(); }
+    if (saveItem()) { closeModal(); }
     clearInput();
 });
 
@@ -45,25 +47,25 @@ function saveItem() {
     const name = id("name-input").value;
     const price = id("price-input").value;
     const num = id("item-num-input").value;
-    
+
     const imgError = imgValidate(imgSrc); errorHandler(imgError);
     const nameError = nameValidate(name); errorHandler(nameError);
     const priceError = priceValidate(price); errorHandler(priceError);
     const numError = numValivate(num); errorHandler(numError);
-    if(imgError || nameError || priceError || numError) { return false; }
+    if (imgError || nameError || priceError || numError) { return false; }
 
     addItem(imgSrc, name, price, num);
     return true;
 }
 
 function errorHandler(err) {
-    if(err) { alert(err); }
+    if (err) { alert(err); }
 }
 
 function imgValidate(src) {
-    if(!src) { return "상품 이미지를 추가하시오."; }
-    if(!/(.png|.jpe?g)$/.test(src)) { return "이미지 파일이 아닙니다. ‘jpg’, ‘jpeg’ 또는 ‘png’을 확장자 로 가진 파일을 추가하시오."; }
-    if(isImgUploaded(src)) { return "등록된 상품이 이미 있습니다."; }
+    if (!src) { return "상품 이미지를 추가하시오."; }
+    if (!/(.png|.jpe?g)$/.test(src)) { return "이미지 파일이 아닙니다. ‘jpg’, ‘jpeg’ 또는 ‘png’을 확장자 로 가진 파일을 추가하시오."; }
+    if (isImgUploaded(src)) { return "등록된 상품이 이미 있습니다."; }
     return "";
 }
 
@@ -72,25 +74,25 @@ function isImgUploaded(src) {
 }
 
 function nameValidate(name) {
-    if(!name) { return "상품 이름을 입력하시오."; }
-    if(!/[a-zA-Z]+/.test(name)) { return "문자로된 상품 이름을 입력하시오."; }
+    if (!name) { return "상품 이름을 입력하시오."; }
+    if (!/[a-zA-Z]+/.test(name)) { return "문자로된 상품 이름을 입력하시오."; }
     return "";
 }
 
 function priceValidate(price) {
-    if(!price) { return "상품 가격을 입력하시오."; }
+    if (!price) { return "상품 가격을 입력하시오."; }
     const refined = parseInt(price);
-    if(isNaN(refined)) { return "상품 가격에 숫자를 입력하시오."; }
-    if(parseInt(price) < 100) { return "상품 가격을 100 원 이상으로 입력하시오."; }
+    if (isNaN(refined)) { return "상품 가격에 숫자를 입력하시오."; }
+    if (parseInt(price) < 100) { return "상품 가격을 100 원 이상으로 입력하시오."; }
     return "";
 }
 
 function numValivate(num) {
-    if(!num) { return "상품 개수를 입력하시오."; }
+    if (!num) { return "상품 개수를 입력하시오."; }
     const refined = parseInt(num);
-    if(isNaN(refined)) { return "상품 개수에 숫자를 입력하시오."; }
-    if(refined > 100) { return "최대 100개 이하로 입력하시오."; }
-    if(refined < 1) { return "최소 1개 이상으로 입력하시오."; }
+    if (isNaN(refined)) { return "상품 개수에 숫자를 입력하시오."; }
+    if (refined > 100) { return "최대 100개 이하로 입력하시오."; }
+    if (refined < 1) { return "최소 1개 이상으로 입력하시오."; }
     return "";
 }
 
@@ -101,13 +103,24 @@ function addItem(imgSrc, name, price, num) {
 }
 
 function render() {
+    // Rendering items
     const itemContainer = id("item-container");
     const itemIter = itemContainer.children;
-    while(itemIter.length != 0) {
+    while (itemIter.length > 0) {
         itemIter.item(0).remove();
     }
     items.forEach((item, idx) => {
         itemContainer.appendChild(getAnItem(item, idx));
+    });
+
+    // Rendering cart
+    const cartContainer = id("cart-container");
+    const cartIter = cartContainer.children;
+    while (cartIter.length > 0) {
+        cartIter.item(0).remove();
+    }
+    Object.entries(cart).forEach((item) => {
+        cartContainer.appendChild(getAnCartItem(item[0], item[1]));
     });
 }
 
@@ -122,20 +135,22 @@ function getAnItem(item, idx) {
     // checkbox
     let el = make("input");
     el.type = "checkbox";
-    table.appendChild(getTableRow(true, el));
+    el.classList.add("item-checkbox");
+    el.id = `item-checkbox-${idx}`;
+    table.appendChild(getItemTableRow(true, el));
 
     // item image
     el = make("img");
     el.src = item.imgSrc;
-    table.appendChild(getTableRow(false, el));
+    table.appendChild(getItemTableRow(false, el));
 
     // item name
     el = text(item.name);
-    table.appendChild(getTableRow(true, el));
+    table.appendChild(getItemTableRow(true, el));
 
     // item price
     el = text(item.price);
-    table.appendChild(getTableRow(true, el, text(" 원")));
+    table.appendChild(getItemTableRow(true, el, text(" 원")));
 
     // item num input
     el = make("input");
@@ -143,24 +158,24 @@ function getAnItem(item, idx) {
     el.setAttribute("size", "10");
     el.id = `item-num-${idx}`;
     el.addEventListener("keyup", inputNumCallback);
-    table.appendChild(getTableRow(true, el, text(" 개")));
+    table.appendChild(getItemTableRow(true, el, text(" 개")));
 
     // total amount
     el = make("span");
     el.appendChild(text("0"));
     el.id = `item-total-${idx}`;
-    table.appendChild(getTableRow(true, text("합계 "), el, text("원")));
-    
+    table.appendChild(getItemTableRow(true, text("합계 "), el, text("원")));
+
     // remaining
     el = make("span");
     el.appendChild(text(item.num));
-    table.appendChild(getTableRow(true, text("총 "), el, text("개 남음")));
+    table.appendChild(getItemTableRow(true, text("총 "), el, text("개 남음")));
 
     itemBox.appendChild(table);
     return itemBox;
 }
 
-function getTableRow(isTextCell, ...innerNodes) {
+function getItemTableRow(isTextCell, ...innerNodes) {
     const tr = make("tr");
 
     const td = make("td");
@@ -181,9 +196,83 @@ function inputNumCallback(event) {
     const idx = parseInt(target.id.split('-')[2]);
     const total = id(`item-total-${idx}`);
     total.removeChild(total.childNodes.item(0));
-    if(!isNaN(inputNum)) {
+    if (!isNaN(inputNum)) {
         total.appendChild(text(inputNum * items[idx].price));
     } else {
         total.appendChild(text("0"));
     }
+}
+
+function getAnCartItem(idx, item) {
+    const tr = make("tr");
+
+    // Checkbox
+    let el = make("input");
+    el.type = "checkbox";
+    el.checked = true;
+    tr.appendChild(getCartTableData(el));
+
+    // Cart item image
+    el = make("img");
+    el.src = item.imgSrc;
+    tr.appendChild(getCartTableData(el));
+
+    // Cart item name
+    tr.appendChild(getCartTableData(text(item.name)));
+
+    // Cart item price
+    tr.appendChild(getCartTableData(text(item.price)));
+
+    // Cart item num
+    el = make("input");
+    el.type = "text";
+    el.value = item.num;
+    const btn = make("button");
+    btn.appendChild(text("변경"));
+    tr.appendChild(getCartTableData(el, btn));
+
+    // Cart item total
+    tr.appendChild(getCartTableData(text(item.price * item.num)));
+
+    return tr;
+}
+
+function getCartTableData(...innerNodes) {
+    const td = make("td");
+    innerNodes.forEach((node) => {
+        td.appendChild(node);
+    });
+    return td;
+}
+
+/* Add to cart */
+id("add-cart-btn").addEventListener("click", (event) => {
+    event.preventDefault();
+
+    clas("item-checkbox").forEach((checkbox) => {
+        if (checkbox.checked) {
+            const idx = parseInt(checkbox.id.split('-')[2]);
+            const item = items[idx];
+            const total = parseInt(id(`item-total-${idx}`).innerText);
+            const num = total / item.price;
+            if (0 < num && num <= item.num) {
+                addCart(idx, num);
+            }
+        }
+    });
+});
+
+function addCart(idx, num) {
+    if (cart["" + idx]) {
+        cart["" + idx].num += num;
+    } else {
+        cart["" + idx] = {
+            imgSrc: items[idx].imgSrc,
+            name: items[idx].name,
+            price: items[idx].price,
+            num,
+        }
+    }
+    items[idx].num -= num;
+    render();
 }

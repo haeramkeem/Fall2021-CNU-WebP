@@ -20,6 +20,10 @@ img {
     object-fit: contain;
 }
 
+input[type="text"] {
+    text-align: center;
+}
+
 /* Components */
 /* Modal */
 #modal-container {
