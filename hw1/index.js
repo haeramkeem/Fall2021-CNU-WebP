@@ -141,11 +141,14 @@ function getAnItem(item, idx) {
     el = make("input");
     el.type = "text";
     el.setAttribute("size", "10");
+    el.id = `item-num-${idx}`;
+    el.addEventListener("keyup", inputNumCallback);
     table.appendChild(getTableRow(true, el, text(" 개")));
 
     // total amount
     el = make("span");
     el.appendChild(text("0"));
+    el.id = `item-total-${idx}`;
     table.appendChild(getTableRow(true, text("합계 "), el, text("원")));
     
     // remaining
@@ -172,10 +175,15 @@ function getTableRow(isTextCell, ...innerNodes) {
     return tr;
 }
 
-function commit(imgSrc, name, price, num) {
-    console.warn("TODO: commit item to state");
-    console.log(imgSrc);
-    console.log(name);
-    console.log(price);
-    console.log(num);
+function inputNumCallback(event) {
+    const target = event.target;
+    const inputNum = parseInt(target.value);
+    const idx = parseInt(target.id.split('-')[2]);
+    const total = id(`item-total-${idx}`);
+    total.removeChild(total.childNodes.item(0));
+    if(!isNaN(inputNum)) {
+        total.appendChild(text(inputNum * items[idx].price));
+    } else {
+        total.appendChild(text("0"));
+    }
 }
