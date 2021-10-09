@@ -319,3 +319,11 @@ function addCart(idx, num) {
     items[idx].num -= num;
     render();
 }
+
+id("select-all-btn").addEventListener("change", (event) => {
+    const checkboxes = clas("cart-checkbox");
+    for (let i = 0; i < checkboxes.length; i++) {
+        checkboxes.item(i).checked = event.target.checked;
+    }
+    refreshCartTotal();
+});
