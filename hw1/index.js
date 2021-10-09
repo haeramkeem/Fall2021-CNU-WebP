@@ -124,6 +124,7 @@ function render() {
     });
 
     refreshCartTotal();
+    setSelectAllBtn();
 }
 
 function getAnItem(item, idx) {
@@ -211,10 +212,10 @@ function getAnCartItem(idx, item) {
     // Checkbox
     let el = make("input");
     el.type = "checkbox";
-    el.checked = true;
+    el.checked = item.isChecked;
     el.classList.add("cart-checkbox");
     el.id = `cart-checkbox-${idx}`;
-    el.addEventListener("change", refreshCartTotal);
+    el.addEventListener("change", cartCheckboxCallback(idx));
     tr.appendChild(getCartTableData(el));
 
     // Cart item image
@@ -264,6 +265,28 @@ function refreshCartTotal() {
     id("cart-total").innerText = acc;
 }
 
+function cartCheckboxCallback(idx) {
+    cart[idx].isChecked = !cart[idx].isChecked;
+
+    return () => {
+        refreshCartTotal();
+        setSelectAllBtn();
+    };
+}
+
+function setSelectAllBtn() {
+    const cartCheckbox = clas("cart-checkbox");
+    let acc = true;
+    if (cartCheckbox.length == 0) {
+        acc = false;
+    } else {
+        cartCheckbox.forEach((item) => {
+            acc = item.checked ? acc : false;
+        });
+    }
+    id("select-all-btn").checked = acc;
+}
+
 /* Add to cart */
 id("add-cart-btn").addEventListener("click", (event) => {
     event.preventDefault();
@@ -286,6 +309,7 @@ function addCart(idx, num) {
         cart["" + idx].num += num;
     } else {
         cart["" + idx] = {
+            isChecked: true,
             imgSrc: items[idx].imgSrc,
             name: items[idx].name,
             price: items[idx].price,
