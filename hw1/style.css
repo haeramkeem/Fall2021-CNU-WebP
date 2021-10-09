@@ -15,6 +15,11 @@ th, td {
     text-align: center;
 }
 
+img {
+    width: 80px;
+    object-fit: contain;
+}
+
 /* Components */
 /* Modal */
 #modal-container {

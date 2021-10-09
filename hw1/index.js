@@ -1,5 +1,10 @@
+/* Global variables */
+const items = [];
+
 /* Shortcuts */
 const id = (idName) => document.getElementById(idName);
+const make = (tagName) => document.createElement(tagName);
+const text = (textContent) => document.createTextNode(textContent);
 
 /* Modal */
 // Show modal
@@ -89,11 +94,82 @@ function numValivate(num) {
     return "";
 }
 
-// State management
+/* Store */
+function addItem(imgSrc, name, price, num) {
+    items.push({ imgSrc, name, price, num, });
+    render();
+}
 
-function isImgUploaded(src) {
-    console.warn("TODO: image uploaded validation");
-    return false;
+function render() {
+    const itemContainer = id("item-container");
+    const itemIter = itemContainer.children;
+    while(itemIter.length != 0) {
+        itemIter.item(0).remove();
+    }
+    items.forEach((item, idx) => {
+        itemContainer.appendChild(getAnItem(item, idx));
+    });
+}
+
+function getAnItem(item, idx) {
+    // item box
+    const itemBox = make("div");
+    itemBox.classList.add("item-box");
+
+    // table
+    const table = make("table");
+
+    // checkbox
+    let el = make("input");
+    el.type = "checkbox";
+    table.appendChild(getTableRow(true, el));
+
+    // item image
+    el = make("img");
+    el.src = item.imgSrc;
+    table.appendChild(getTableRow(false, el));
+
+    // item name
+    el = text(item.name);
+    table.appendChild(getTableRow(true, el));
+
+    // item price
+    el = text(item.price);
+    table.appendChild(getTableRow(true, el, text(" 원")));
+
+    // item num input
+    el = make("input");
+    el.type = "text";
+    el.setAttribute("size", "10");
+    table.appendChild(getTableRow(true, el, text(" 개")));
+
+    // total amount
+    el = make("span");
+    el.appendChild(text("0"));
+    table.appendChild(getTableRow(true, text("합계 "), el, text("원")));
+    
+    // remaining
+    el = make("span");
+    el.appendChild(text(item.num));
+    table.appendChild(getTableRow(true, text("총 "), el, text("개 남음")));
+
+    itemBox.appendChild(table);
+    return itemBox;
+}
+
+function getTableRow(isTextCell, ...innerNodes) {
+    const tr = make("tr");
+
+    const td = make("td");
+    td.classList.add("item-cell");
+    td.classList.add(isTextCell ? "item-text" : "item-img");
+
+    innerNodes.forEach((node) => {
+        td.appendChild(node);
+    });
+    tr.appendChild(td);
+
+    return tr;
 }
 
 function commit(imgSrc, name, price, num) {
