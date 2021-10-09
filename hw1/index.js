@@ -31,15 +31,12 @@ function closeModal() {
 // Save
 id("save-item-btn").addEventListener("click", (event) => {
     event.preventDefault();
-    if(saveItem()) {
-        closeModal();
-    } else {
-        clearInput();
-    }
+    if(saveItem()) { closeModal(); }
+    clearInput();
 });
 
 function saveItem() {
-    let imgSrc = id("image-input").value;
+    const imgSrc = `./image/${id("image-input").value.substring(12)}`;
     const name = id("name-input").value;
     const price = id("price-input").value;
     const num = id("item-num-input").value;
@@ -50,8 +47,7 @@ function saveItem() {
     const numError = numValivate(num); errorHandler(numError);
     if(imgError || nameError || priceError || numError) { return false; }
 
-    imgSrc = `./image/${imgSrc.substring(12)}`;
-    commit(imgSrc, name, price, num);
+    addItem(imgSrc, name, price, num);
     return true;
 }
 
@@ -64,6 +60,10 @@ function imgValidate(src) {
     if(!/(.png|.jpe?g)$/.test(src)) { return "이미지 파일이 아닙니다. ‘jpg’, ‘jpeg’ 또는 ‘png’을 확장자 로 가진 파일을 추가하시오."; }
     if(isImgUploaded(src)) { return "등록된 상품이 이미 있습니다."; }
     return "";
+}
+
+function isImgUploaded(src) {
+    return items.filter(item => item.imgSrc == src).length != 0;
 }
 
 function nameValidate(name) {
