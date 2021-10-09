@@ -122,6 +122,8 @@ function render() {
     Object.entries(cart).forEach((item) => {
         cartContainer.appendChild(getAnCartItem(item[0], item[1]));
     });
+
+    refreshCartTotal();
 }
 
 function getAnItem(item, idx) {
@@ -210,6 +212,9 @@ function getAnCartItem(idx, item) {
     let el = make("input");
     el.type = "checkbox";
     el.checked = true;
+    el.classList.add("cart-checkbox");
+    el.id = `cart-checkbox-${idx}`;
+    el.addEventListener("change", refreshCartTotal);
     tr.appendChild(getCartTableData(el));
 
     // Cart item image
@@ -232,7 +237,10 @@ function getAnCartItem(idx, item) {
     tr.appendChild(getCartTableData(el, btn));
 
     // Cart item total
-    tr.appendChild(getCartTableData(text(item.price * item.num)));
+    el = make("span");
+    el.appendChild(text(item.price * item.num));
+    el.id = `cart-total-${idx}`;
+    tr.appendChild(getCartTableData(el));
 
     return tr;
 }
@@ -243,6 +251,17 @@ function getCartTableData(...innerNodes) {
         td.appendChild(node);
     });
     return td;
+}
+
+function refreshCartTotal() {
+    let acc = 0;
+    clas("cart-checkbox").forEach((item) => {
+        if (item.checked) {
+            const idx = parseInt(item.id.split('-')[2]);
+            acc += parseInt(id(`cart-total-${idx}`).innerText);
+        }
+    });
+    id("cart-total").innerText = acc;
 }
 
 /* Add to cart */
