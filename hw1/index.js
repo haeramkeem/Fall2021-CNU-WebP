@@ -61,7 +61,7 @@ function errorHandler(err) {
 }
 
 function imgValidate(src) {
-    if (!src) { return "상품 이미지를 추가하시오."; }
+    if (src === "./image/") { return "상품 이미지를 추가하시오."; }
     if (!/(.png|.jpe?g)$/.test(src)) { return "이미지 파일이 아닙니다. ‘jpg’, ‘jpeg’ 또는 ‘png’을 확장자 로 가진 파일을 추가하시오."; }
     if (isImgUploaded(src)) { return "등록된 상품이 이미 있습니다."; }
     return "";
