@@ -331,6 +331,7 @@ id("select-all-btn").addEventListener("click", (event) => {
     const checkboxes = clas("cart-checkbox");
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = event.target.checked;
+        cart["" + index(checkboxes[i])].isChecked = event.target.checked;
     }
     refreshCartTotal();
 });
