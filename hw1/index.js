@@ -294,6 +294,7 @@ function modifyNumCallback(event) {
     } else {
         items[idx].num -= margin;
         cart["" + idx].num += margin;
+        cart["" + idx].isChecked += true;
         render();
     }
 }
