@@ -333,3 +333,12 @@ id("select-all-btn").addEventListener("click", (event) => {
     }
     refreshCartTotal();
 });
+
+id("delete-selection-btn").addEventListener("click", () => {
+    clas("cart-checkbox").filter(item => item.checked).forEach(item => {
+        const idx = "" + index(item);
+        items[index(item)].num += cart[idx].num;
+        delete cart[idx];
+    });
+    render();
+});
