@@ -300,30 +300,30 @@ function modifyNumCallback(event) {
 
 /* Add to cart */
 id("add-cart-btn").addEventListener("click", () => {
-    clas("item-checkbox").filter(item => item.checked).forEach((checkbox) => {
+    const selected = clas("item-checkbox").filter(item => item.checked).map((checkbox) => {
         const idx = index(checkbox);
         const item = items[idx];
-        const total = parseInt(id(`item-total-${idx}`).innerText);
-        const num = total / item.price;
-        if (0 < num && num <= item.num) {
-            addCart(idx, num);
-        }
+        const num = parseInt(id(`item-total-${idx}`).innerText) / item.price;
+        return 0 < num && num <= item.num ? { idx, num } : {};
     });
+    addCart(selected);
 });
 
-function addCart(idx, num) {
-    if (cart["" + idx]) {
-        cart["" + idx].num += num;
-    } else {
-        cart["" + idx] = {
-            isChecked: true,
-            imgSrc: items[idx].imgSrc,
-            name: items[idx].name,
-            price: items[idx].price,
-            num,
+function addCart(itemsToAdd) {
+    itemsToAdd.forEach((item => {
+        if (cart["" + item.idx]) {
+            cart["" + item.idx].num += item.num;
+        } else {
+            cart["" + item.idx] = {
+                isChecked: true,
+                imgSrc: items[item.idx].imgSrc,
+                name: items[item.idx].name,
+                price: items[item.idx].price,
+                num: item.num,
+            }
         }
-    }
-    items[idx].num -= num;
+        items[item.idx].num -= item.num;
+    }));
     render();
 }
 
