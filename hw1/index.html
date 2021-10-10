@@ -22,22 +22,22 @@
         <label class="modal-input-label">
             상품 개수 : <input type="text" size="5" id="item-num-input">최대 100개 이하까지 등록 가능
         </label>
-        <div class="">
+        <div>
             <br>
             <button id="save-item-btn">저장</button>
             <button id="cancel-item-btn">취소</button>
         </div>
     </div>
-    <div class="">
+    <div>
         <button id="add-item-btn">상품 등록하기</button>
     </div>
     <hr>
-    <div class="">
+    <div>
         <div id="item-container"></div>
         <button id="add-cart-btn">장바구니 담기</button>
     </div>
     <hr>
-    <div class="">
+    <div>
         <label>
             <input type="checkbox" id="select-all-btn">
             전체 선택
@@ -56,8 +56,10 @@
             </thead>
             <tbody id="cart-container"></tbody>
             <tfoot>
-                <th colspan="5">총 가격</th>
-                <td id="cart-total">0</td>
+                <tr>
+                    <th colspan="5">총 가격</th>
+                    <td id="cart-total">0</td>
+                </tr>
             </tfoot>
         </table>
     </div>
