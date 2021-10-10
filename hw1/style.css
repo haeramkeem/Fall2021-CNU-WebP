@@ -17,11 +17,17 @@ th, td {
 
 img {
     width: 80px;
-    object-fit: contain;
+    height: 80px;
+    margin: 0px 15px;
+    object-fit: cover;
 }
 
 input[type="text"] {
     text-align: center;
+}
+
+hr {
+    margin: 20px 0px;
 }
 
 /* Components */
@@ -48,17 +54,12 @@ input[type="text"] {
     padding: 5px;
     border: 1px solid black;
     display: inline-block;
-    margin: 10px;
+    margin-left: 20px;
 }
 .item-cell {
     width: 110px;
-    
 }
 
 .item-text {
     height: 30px;
-}
-
-.item-img {
-    height: auto;
 }

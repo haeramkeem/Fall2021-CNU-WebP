@@ -156,6 +156,7 @@ function getAnItem(item, idx) {
     // item num input
     el = make("input");
     el.type = "text";
+    el.value = 1;
     el.setAttribute("size", "10");
     el.id = `item-num-${idx}`;
     el.addEventListener("keyup", inputNumCallback);
@@ -163,7 +164,7 @@ function getAnItem(item, idx) {
 
     // total amount
     el = make("span");
-    el.appendChild(text("0"));
+    el.appendChild(text(item.price));
     el.id = `item-total-${idx}`;
     table.appendChild(getItemTableRow(true, text("합계 "), el, text("원")));
 
@@ -181,7 +182,7 @@ function getItemTableRow(isTextCell, ...innerNodes) {
 
     const td = make("td");
     td.classList.add("item-cell");
-    td.classList.add(isTextCell ? "item-text" : "item-img");
+    if (isTextCell) { td.classList.add("item-text"); }
 
     innerNodes.forEach((node) => {
         td.appendChild(node);
