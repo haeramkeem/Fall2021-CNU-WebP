@@ -215,7 +215,7 @@ function getAnCartItem(idx, item) {
     el.checked = item.isChecked;
     el.classList.add("cart-checkbox");
     el.id = `cart-checkbox-${idx}`;
-    el.addEventListener("change", cartCheckboxCallback(idx));
+    el.addEventListener("click", cartCheckboxCallback(idx));
     tr.appendChild(getCartTableData(el));
 
     // Cart item image
@@ -233,8 +233,11 @@ function getAnCartItem(idx, item) {
     el = make("input");
     el.type = "text";
     el.value = item.num;
+    el.id = `cart-input-${idx}`;
     const btn = make("button");
     btn.appendChild(text("변경"));
+    btn.id = `cart-modify-${idx}`;
+    btn.addEventListener("click", modifyNumCallback);
     tr.appendChild(getCartTableData(el, btn));
 
     // Cart item total
@@ -266,9 +269,8 @@ function refreshCartTotal() {
 }
 
 function cartCheckboxCallback(idx) {
-    cart[idx].isChecked = !cart[idx].isChecked;
-
     return () => {
+        cart[idx].isChecked = !cart[idx].isChecked;
         refreshCartTotal();
         setSelectAllBtn();
     };
@@ -285,6 +287,20 @@ function setSelectAllBtn() {
         });
     }
     id("select-all-btn").checked = acc;
+}
+
+function modifyNumCallback(event) {
+    event.preventDefault();
+    const idx = parseInt(event.target.id.split('-')[2]);
+    const margin = parseInt(id(`cart-input-${idx}`).value) - cart["" + idx].num;
+    if (items[idx].num < margin) {
+        alert("남아있는 상품의 수가 부족합니다.");
+        id(`cart-input-${idx}`).value = cart["" + idx].num;
+    } else {
+        items[idx].num -= margin;
+        cart["" + idx].num += margin;
+        render();
+    }
 }
 
 /* Add to cart */
@@ -320,7 +336,7 @@ function addCart(idx, num) {
     render();
 }
 
-id("select-all-btn").addEventListener("change", (event) => {
+id("select-all-btn").addEventListener("click", (event) => {
     const checkboxes = clas("cart-checkbox");
     for (let i = 0; i < checkboxes.length; i++) {
         checkboxes.item(i).checked = event.target.checked;
