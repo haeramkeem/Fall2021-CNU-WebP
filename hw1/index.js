@@ -6,18 +6,17 @@ const cart = {};
 const id = (idName) => document.getElementById(idName);
 const make = (tagName) => document.createElement(tagName);
 const text = (textContent) => document.createTextNode(textContent);
-const clas = (className) => document.querySelectorAll(`.${className}`);
+const clas = (className) => Array.prototype.slice.call(document.querySelectorAll(`.${className}`));
+const index = (target) => parseInt(target.id.split('-')[2]);
 
 /* Modal */
 // Show modal
-id("add-item-btn").addEventListener("click", (event) => {
-    event.preventDefault();
+id("add-item-btn").addEventListener("click", () => {
     id("modal-container").style.display = "block";
 });
 
 // Cancel
-id("cancel-item-btn").addEventListener("click", (event) => {
-    event.preventDefault();
+id("cancel-item-btn").addEventListener("click", () => {
     closeModal();
     clearInput();
 });
@@ -36,8 +35,7 @@ function closeModal() {
 }
 
 // Save
-id("save-item-btn").addEventListener("click", (event) => {
-    event.preventDefault();
+id("save-item-btn").addEventListener("click", () => {
     if (saveItem()) { closeModal(); }
     clearInput();
 });
@@ -196,7 +194,7 @@ function getItemTableRow(isTextCell, ...innerNodes) {
 function inputNumCallback(event) {
     const target = event.target;
     const inputNum = parseInt(target.value);
-    const idx = parseInt(target.id.split('-')[2]);
+    const idx = index(target);
     const total = id(`item-total-${idx}`);
     total.removeChild(total.childNodes.item(0));
     if (!isNaN(inputNum)) {
@@ -259,11 +257,8 @@ function getCartTableData(...innerNodes) {
 
 function refreshCartTotal() {
     let acc = 0;
-    clas("cart-checkbox").forEach((item) => {
-        if (item.checked) {
-            const idx = parseInt(item.id.split('-')[2]);
-            acc += parseInt(id(`cart-total-${idx}`).innerText);
-        }
+    clas("cart-checkbox").filter(item => item.checked).forEach((item) => {
+        acc += parseInt(id(`cart-total-${index(item)}`).innerText);
     });
     id("cart-total").innerText = acc;
 }
@@ -290,8 +285,7 @@ function setSelectAllBtn() {
 }
 
 function modifyNumCallback(event) {
-    event.preventDefault();
-    const idx = parseInt(event.target.id.split('-')[2]);
+    const idx = index(event.target);
     const margin = parseInt(id(`cart-input-${idx}`).value) - cart["" + idx].num;
     if (items[idx].num < margin) {
         alert("남아있는 상품의 수가 부족합니다.");
@@ -304,18 +298,14 @@ function modifyNumCallback(event) {
 }
 
 /* Add to cart */
-id("add-cart-btn").addEventListener("click", (event) => {
-    event.preventDefault();
-
-    clas("item-checkbox").forEach((checkbox) => {
-        if (checkbox.checked) {
-            const idx = parseInt(checkbox.id.split('-')[2]);
-            const item = items[idx];
-            const total = parseInt(id(`item-total-${idx}`).innerText);
-            const num = total / item.price;
-            if (0 < num && num <= item.num) {
-                addCart(idx, num);
-            }
+id("add-cart-btn").addEventListener("click", () => {
+    clas("item-checkbox").filter(item => item.checked).forEach((checkbox) => {
+        const idx = index(checkbox);
+        const item = items[idx];
+        const total = parseInt(id(`item-total-${idx}`).innerText);
+        const num = total / item.price;
+        if (0 < num && num <= item.num) {
+            addCart(idx, num);
         }
     });
 });
