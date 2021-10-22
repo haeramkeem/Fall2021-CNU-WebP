@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    학생 데이터 저장하기
+    <form action="./save.php" method="post">
+    <label>
+        학과 :
+        <input type="text" name="major" required>
+    </label>
+    <br>
+    <label>
+        학생 이름 :
+        <input type="text" name="name" required>
+    </label>
+    <br>
+    <label>
+        학년 :
+        <input type="number" name="grade" min="1" max="4" required>
+    </label>
+    <br>
+    <input type="submit" value="저장">
+    </form>
+</body>
+</html>
