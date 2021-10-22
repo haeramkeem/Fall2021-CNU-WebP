@@ -106,5 +106,5 @@ dist
 # MacOS defaults
 .DS_Store
 
-# Ignore statics
-image/
+# Ignore windows defaults
+.Identifier
