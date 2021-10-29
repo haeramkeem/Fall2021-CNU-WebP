@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./save.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="save.js"></script>
+    <title>도서 저장</title>
+</head>
+<body>
+    <header><h1>도서 정보 저장하기</h1></header>
+    <form action="save.php" method="post">
+        <table>
+            <tbody>
+                <tr>
+                    <th><label for="book-name-input">도서 이름</label></th>
+                    <td><input type="text" id="book-name-input" name="bname" required></td>
+                </tr>
+                <tr>
+                    <th><label for="book-author-input-0">저자</label></th>
+                    <td><input type="text" id="book-author-input-0" name="bauthor0" required> <input type="button" value="저자 추가" id="add-author-btn"> <input type="button" value="저자 삭제" id="del-author-btn"></td>
+                </tr>
+                <tr>
+                    <th><label for="book-date-input">출판년월</label></th>
+                    <td><input type="date" id="book-date-input" name="bdate" required></td>
+                </tr>
+                <tr>
+                    <th><label for="book-publish-input">출판사</label></th>
+                    <td><input type="text" id="book-publish-input" name="bpublish" required></td>
+                </tr>
+                <tr>
+                    <th><label for="book-image-input">미리보기 화일</label></th>
+                    <td><input type="file" id="book-image-input" accept="image/*" name="bimage" required></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><input type="submit" value="저장하기"></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
