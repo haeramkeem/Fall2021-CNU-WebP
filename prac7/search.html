@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="search.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <h3>AJAX를 이용하여 검색하기</h3>
+    <label for="query">검색 단어 : </label>
+    <input
+      type="text"
+      id="query"
+      name="query"
+      onkeyup="showResult(this.value)"
+    />
+    <ol id="liveSearch"></ol>
+  </body>
+</html>

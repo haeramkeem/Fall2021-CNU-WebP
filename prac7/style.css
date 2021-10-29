@@ -1,0 +1,13 @@
+.major {
+    color: blue;
+    cursor: pointer;
+}
+
+.res {
+    background-color: aquamarine;
+    width: 200px;
+}
+
+.res>div {
+    text-align: center;
+}

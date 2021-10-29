@@ -108,3 +108,6 @@ dist
 
 # Ignore windows defaults
 .Identifier
+
+# Ignore temporary data
+*.json
