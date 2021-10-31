@@ -2,6 +2,7 @@
 const toArray = (obj) => Array.prototype.slice.call(obj);
 /* ----- Main Flow ----- */
 $(function() {
+    setLoginStatus();
     addLogInBtnClickEventListener();
     addSubmitBtnClickEventListener();
     addSignInBtnClickEventListener();
@@ -9,6 +10,24 @@ $(function() {
     addRentBtnClickEventListener();
     addMypageBtnClickEventListener();
 });
+
+function setLoginStatus() /* => void */ {
+    const sid = document.cookie.split("=")[1];
+    if(sid) {
+        $.get("amILogin.php?sid=" + sid, (data, status) => {
+            if(status === "success") {
+                if(data !== "null") {
+                    setToLoggedIn(data);
+                } else {
+                    const date = new Date();
+                    date.setDate(date.getDate() - 100);
+                    const newCookie = `PHPSESSID=;Expires=${date.toUTCString()}`
+                    document.cookie = newCookie;
+                }
+            }
+        });
+    }
+}
 
 let modalVisible = false;
 function addLogInBtnClickEventListener() /* => void */ {
@@ -33,6 +52,14 @@ function hideModal() /* => void */ {
     modalVisible = false;
 }
 
+function setToLoggedIn(id /* : string */) /* => void */ {
+    $("#id-show-box").text(id);
+    $("#login-out-btn-box").html(`
+        <form action="logout.php" method="post" id="logout-form">
+            <input type="submit" value="로그아웃" name="submit">
+        </form>`);   
+}
+
 function addSubmitBtnClickEventListener() /* => void */ {
     $("#login-submit-btn").click(() => {
         const {id, pw} = idPwValidator();
@@ -40,11 +67,7 @@ function addSubmitBtnClickEventListener() /* => void */ {
             $.post("loginSubmit.php", {id, pw}, (data, status) => {
                 if(status === "success" && data === "success") {
                     alert("로그인 되었습니다.")
-                    $("#id-show-box").text(id);
-                    $("#login-out-btn-box").html(`
-                        <form action="logout.php" method="post" id="logout-form">
-                            <input type="submit" value="로그아웃" name="submit">
-                        </form>`);
+                    setToLoggedIn(id);
                 } else {
                     alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
                 }
