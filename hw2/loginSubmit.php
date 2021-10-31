@@ -24,8 +24,7 @@ if(isset($_POST["id"]) && isset($_POST["pw"])) {
         $_SESSION["pw"] = $pw;
         echo "success";
     } else {
-        if(isset($_SESSION["id"])) { unset($_SESSION["id"]); }
-        if(isset($_SESSION["pw"])) { unset($_SESSION["pw"]); }
+        session_destroy();
         echo "fail";
     }
 }

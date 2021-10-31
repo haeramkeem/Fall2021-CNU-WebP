@@ -1,6 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION["id"]) || !isset($_SESSION["pw"])) {
+    session_destroy();
     echo "로그인 후 대출 가능합니다.";
 } else if(isset($_POST["books"])) {
     $books = json_decode($_POST["books"]);

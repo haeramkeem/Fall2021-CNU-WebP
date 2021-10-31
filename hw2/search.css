@@ -28,9 +28,22 @@ html, body, table, header {
     margin-left: calc(100% - 300px);
 }
 
-#id-show-box, #login-out-btn-box {
+.inblock {
     display: inline-block;
-    width: 100px;
+}
+
+#id-show-box {
+    width: 130px;
+    text-align: right;
+}
+
+#login-out-btn-box {
+    width: 70px;
+}
+
+#mypage-btn {
+    width: 70px;
+    cursor: pointer;
 }
 
 #rent-info {
@@ -56,24 +69,31 @@ input[name="query"] {
     display: inline;
 }
 
-#result-table {
+#result-container>table {
     margin-top: 30px;
     border-collapse: collapse;
 }
 
-#result-table>thead {
-    background-color: cadetblue;
+#result-container thead {
     color: white;
 }
 
-#result-table th, #result-table td {
+#result-table>thead {
+    background-color: cadetblue;
+}
+
+#mypage-table>thead {
+    background-color: blueviolet;
+}
+
+#result-container th, #result-container td {
     border: 1px solid lightgray;
 }
 
-#result-table * {
+#result-container * {
     text-align: center;
 }
 
-#rent-btn {
+#action-box {
     margin-top: 30px;
 }

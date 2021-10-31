@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="search.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="login.js"></script>
     <script src="search.js"></script>
     <title>도서 검색</title>
 </head>
@@ -39,11 +38,11 @@
     <!-- Main -->
     <header>
         <div id="pinfo-container">
-            <div id="id-show-box"></div>
-            <div id="login-out-btn-box">
+            <div id="id-show-box" class="inblock"></div>
+            <div id="login-out-btn-box" class="inblock">
                 <input type="button" value="로그인" id="login-btn">
             </div>
-            <a href="" id="rent-info">대출정보</a>
+            <div id="mypage-btn" class="inblock">대출정보</div>
         </div>
         <h1>도서 검색하기</h1>
     </header>
@@ -53,7 +52,9 @@
             <input type="button" value="검색" id="search-btn">
         </div>
         <div id="result-container"></div>
-        <input type="button" value="대출하기" id="rent-btn">
+        <div id="action-box">
+            <input type="button" value="대출하기" id="rent-btn">
+        </div>
     </main>
 </body>
 
