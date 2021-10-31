@@ -42,8 +42,14 @@ function addSignInBtnClickEventListener() /* => void */ {
     $("#signin-btn").click(() => {
         const {id, pw} = idPwValidator();
         if(id !== "" && pw !== "") {
-            console.log(id);
-            console.log(pw);
+            $.post("signin.php", {id, pw}, (data, status) => {
+                if(status === "success" && data === "success") {
+                    alert("회원가입이 완료되었습니다.")
+                } else {
+                    alert("회원가입 도중 에러가 발생했습니다.");
+                }
+                hideModal();
+            });
         }
     });
 }
