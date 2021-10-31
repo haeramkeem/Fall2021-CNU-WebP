@@ -2,6 +2,6 @@
 if(isset($_POST["submit"])) {
     session_start();
     session_destroy();
+    echo "success";
 }
 ?>
-<meta http-equiv="refresh" content="0;url=search.html" />

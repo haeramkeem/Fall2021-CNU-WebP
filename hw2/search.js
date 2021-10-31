@@ -2,7 +2,7 @@
 const toArray = (obj) => Array.prototype.slice.call(obj);
 /* ----- Main Flow ----- */
 $(function() {
-    setLoginStatus();
+    checkLoginStatus();
     addLogInBtnClickEventListener();
     addSubmitBtnClickEventListener();
     addSignInBtnClickEventListener();
@@ -11,7 +11,7 @@ $(function() {
     addMypageBtnClickEventListener();
 });
 
-function setLoginStatus() /* => void */ {
+function checkLoginStatus() /* => void */ {
     const sid = document.cookie.split("=")[1];
     if(sid) {
         $.get("amILogin.php?sid=" + sid, (data, status) => {
@@ -19,10 +19,7 @@ function setLoginStatus() /* => void */ {
                 if(data !== "null") {
                     setToLoggedIn(data);
                 } else {
-                    const date = new Date();
-                    date.setDate(date.getDate() - 100);
-                    const newCookie = `PHPSESSID=;Expires=${date.toUTCString()}`
-                    document.cookie = newCookie;
+                    setToLoggedOut();
                 }
             }
         });
@@ -54,10 +51,25 @@ function hideModal() /* => void */ {
 
 function setToLoggedIn(id /* : string */) /* => void */ {
     $("#id-show-box").text(id);
-    $("#login-out-btn-box").html(`
-        <form action="logout.php" method="post" id="logout-form">
-            <input type="submit" value="로그아웃" name="submit">
-        </form>`);   
+    $("#login-out-btn-box").html('<input type="button" value="로그아웃" id="logout-btn">');
+    addLogOutBtnClickEventListener();
+}
+
+function addLogOutBtnClickEventListener() /* => void */ {
+    $("#logout-btn").click(() => {
+        $.post("logout.php", {submit: ""}, (data, status) => {
+            if(status === "success" && data === "success") {
+                alert("로그아웃이 되었습니다.");
+                setToLoggedOut();
+            }
+        });
+    });
+}
+
+function setToLoggedOut() /* => void */ {
+    $("#id-show-box").text("");
+    $("#login-out-btn-box").html('<input type="submit" value="로그인" id="login-btn">');
+    addLogInBtnClickEventListener();
 }
 
 function addSubmitBtnClickEventListener() /* => void */ {
