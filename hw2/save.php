@@ -57,7 +57,7 @@ if ($uploadOk == 0) {
         $json->fileName = basename($_FILES["bimage"]["name"]);
         $json->rental = "keep";
         $str_json = json_encode($json);
-        $dfile = fopen("data.json", "a");
+        $dfile = fopen("bookList.json", "a");
         fwrite($dfile, $str_json."\n");
         fclose($dfile);
         echo "저장되었습니다.\n";
