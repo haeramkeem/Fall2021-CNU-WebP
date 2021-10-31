@@ -90,30 +90,34 @@ function addSearchBtnClickEventListener() /* => void */ {
 }
 
 function render() /* => void */ {
-    $("#result-container").html(`
-    <table id="result-table">
-        <thead>
-            <tr>
-                <th>선택</th>
-                <th>제목</th>
-                <th>저자</th>
-                <th>출판년월일</th>
-                <th>출판사</th>
-                <th>화일</th>
-                <th>대출여부</th>
-            </tr>
-        </thead>
-        <tbody id="result-rows">
-        </tbody>
-    </table>`);
-
-    $.get(`search.php?query=${$("#query-input").val()}`, (data, status) => {
-        if(status === "success") {
-            toArray(JSON.parse(data)).forEach((el) => {
-                $("#result-rows").append(objToResultRow(el));
-            });
-        }
-    });
+    const query = $("#query-input").val();
+    if(query.length > 0) {
+        $("#result-container").html(`
+        <table id="result-table">
+            <thead>
+                <tr>
+                    <th>선택</th>
+                    <th>제목</th>
+                    <th>저자</th>
+                    <th>출판년월일</th>
+                    <th>출판사</th>
+                    <th>화일</th>
+                    <th>대출여부</th>
+                </tr>
+            </thead>
+            <tbody id="result-rows">
+            </tbody>
+        </table>`);
+        $.get(`search.php?query=${query}`, (data, status) => {
+            if(status === "success") {
+                toArray(JSON.parse(data)).forEach((el) => {
+                    $("#result-rows").append(objToResultRow(el));
+                });
+            }
+        });
+    } else {
+        alert("검색어를 입력해주세요.");
+    }
 }
 
 function objToResultRow(obj /* : {bookName: string, authors: Array<string>, publishDate: string, publisher: string, fileName: string, rental: string} */) /* => void */ {
