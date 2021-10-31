@@ -56,14 +56,15 @@ function addRentBtnClickEventListener() /* => void */ {
             if(el.checked) {
                 arr.push(el.value);
             }
-        })
-        $.post("rent.php", {
-            books: JSON.stringify(arr)
-        }, (data, status) => {
-            if(status === "success") {
-                alert(data);
-                render();
-            }
         });
+        if(arr.length > 0) {
+            $.post("rent.php", {
+                books: JSON.stringify(arr)
+            }, (data, status) => {
+                if(status === "success") {
+                    alert(data);
+                    render();
+                }
+            });
     });
 }
