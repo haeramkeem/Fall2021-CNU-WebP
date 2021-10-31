@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="search.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="login.js"></script>
+    <title>도서 검색</title>
+</head>
+
+<body>
+    <!-- Modal -->
+    <div id="modal-container">
+        <table>
+            <tbody>
+                <tr>
+                    <td>id</td>
+                    <td><input type="text" id="id-input" name="id"></td>
+                </tr>
+                <tr>
+                    <td>password</td>
+                    <td><input type="password" id="pw-input" name="pw">
+                </tr>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="Submit" id="login-submit-btn">
+                        <input type="button" value="SignIn" id="signin-btn">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Main -->
+    <header>
+        <div id="pinfo-container">
+            <input type="button" value="로그인" id="login-btn">
+            <a href="" id="rent-info">대출정보</a>
+        </div>
+        <h1>도서 검색하기</h1>
+    </header>
+    <main>
+        <div id="search-container">
+            <form action="search.php" method="get">
+                <input type="text" name="query">
+                <input type="button" value="검색">
+            </form>
+        </div>
+        <div id="result-container">
+
+        </div>
+    </main>
+</body>
+
+</html>
