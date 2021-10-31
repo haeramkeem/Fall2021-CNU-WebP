@@ -68,3 +68,7 @@ input[name="query"] {
 #result-table * {
     text-align: center;
 }
+
+#rent-btn {
+    margin-top: 30px;
+}
