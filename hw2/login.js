@@ -35,7 +35,11 @@ function addSubmitBtnClickEventListener() /* => void */ {
             $.post("loginSubmit.php", {id, pw}, (data, status) => {
                 if(status === "success" && data === "success") {
                     alert("로그인 되었습니다.")
-                    $("#login-status-box").html('<form action="logout.php" method="post" id="logout-form"><input type="submit" value="로그아웃" name="submit"></form>');
+                    $("#id-show-box").text(id);
+                    $("#login-out-btn-box").html(`
+                        <form action="logout.php" method="post" id="logout-form">
+                            <input type="submit" value="로그아웃" name="submit">
+                        </form>`);
                 } else {
                     alert("아이디 혹은 비밀번호가 일치하지 않습니다.");
                 }

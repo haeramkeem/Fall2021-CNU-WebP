@@ -24,8 +24,13 @@ html, body, table, header {
 }
 
 #pinfo-container {
-    width: 150px;
-    margin-left: calc(100% - 150px);
+    width: 300px;
+    margin-left: calc(100% - 300px);
+}
+
+#id-show-box, #login-out-btn-box {
+    display: inline-block;
+    width: 100px;
 }
 
 #rent-info {
