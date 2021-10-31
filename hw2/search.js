@@ -162,26 +162,31 @@ function addMypageBtnClickEventListener() /* => void */ {
                 } else {
                     $("#login-out-btn-box").html('<span id="id-suffix">님</span>');
                     $("#mypage-btn").html("");
-                    $("#result-container").html(`
-                    <table id="mypage-table">
-                        <thead>
-                            <tr>
-                                <th>선택</th>
-                                <th>책 제목</th>
-                                <th>대출 날짜</th>
-                            </tr>
-                        </thead>
-                        <tbody id="mypage-rows">
-                        </tbody>
-                    </table>`);
                     $("#action-box").html('<input type="button" value="반납하기" id="return-btn">');
+                    addReturnBtnClickEventListener();
                     $("#search-container").html("");
-                    toArray(JSON.parse(data)).forEach((el) => {
-                        $("#mypage-rows").append(objToMypageRow(el));
-                    });
+                    renderMypage(data);
                 }
             }
         });
+    });
+}
+
+function renderMypage(data /* : string */) /* => void */ {
+    $("#result-container").html(`
+    <table id="mypage-table">
+        <thead>
+            <tr>
+                <th>선택</th>
+                <th>책 제목</th>
+                <th>대출 날짜</th>
+            </tr>
+        </thead>
+        <tbody id="mypage-rows">
+        </tbody>
+    </table>`);
+    toArray(JSON.parse(data)).forEach((el) => {
+        $("#mypage-rows").append(objToMypageRow(el));
     });
 }
 
@@ -192,4 +197,31 @@ function objToMypageRow(obj /* : {bookName: string, rentalDate: string} */) /* =
             <td>${obj.bookName}</td>
             <td>${obj.rentalDate}</td>
         <tr>`;
+}
+
+function addReturnBtnClickEventListener() /* => void */ {
+    $("#return-btn").click(() => {
+        const arr = [];
+        $(".mypage-row-checkbox").each((idx, el) => {
+            if(el.checked) {
+                arr.push(el.value);
+            }
+        });
+        if(arr.length > 0) {
+            $.post("return.php", {
+                books: JSON.stringify(arr)
+            }, (data, status) => {
+                if(status === "success") {
+                    if(data === "fail") {
+                        alert("로그인이 필요합니다.");
+                    } else {
+                        alert("반환되었습니다.");
+                        renderMypage(data);
+                    }
+                }
+            });
+        } else {
+            alert("책을 선택해주세요.");
+        }
+    });
 }
