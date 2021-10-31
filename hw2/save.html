@@ -11,7 +11,7 @@
 </head>
 <body>
     <header><h1>도서 정보 저장하기</h1></header>
-    <form action="save.php" method="post">
+    <form action="save.php" method="post" enctype="multipart/form-data">
         <table>
             <tbody>
                 <tr>
@@ -36,7 +36,7 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <td><input type="submit" value="저장하기"></td>
+                    <td><input type="submit" value="저장하기" name="submit"></td>
                 </tr>
             </tbody>
         </table>
