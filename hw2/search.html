@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="search.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="login.js"></script>
+    <script src="search.js"></script>
     <title>도서 검색</title>
 </head>
 
@@ -47,13 +48,10 @@
     </header>
     <main>
         <div id="search-container">
-            <form action="search.php" method="get">
-                <input type="text" name="query">
-                <input type="button" value="검색">
-            </form>
+            <input type="text" name="query" id="query-input">
+            <input type="button" value="검색" id="search-btn">
         </div>
         <div id="result-container">
-
         </div>
     </main>
 </body>
