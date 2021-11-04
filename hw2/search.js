@@ -1,5 +1,6 @@
 /* ----- Shortcuts ----- */
 const toArray = (obj) => Array.prototype.slice.call(obj);
+
 /* ----- Main Flow ----- */
 $(function() {
     checkLoginStatus();
