@@ -14,7 +14,7 @@ $(function() {
 function checkLoginStatus() /* => void */ {
     const sid = document.cookie.split("=")[1];
     if(sid) {
-        $.get("amILogin.php?sid=" + sid, (data, status) => {
+        $.get("sesscheck.php?sid=" + sid, (data, status) => {
             if(status === "success") {
                 if(data !== "null") {
                     setToLoggedIn(data);
@@ -76,7 +76,7 @@ function addSubmitBtnClickEventListener() /* => void */ {
     $("#login-submit-btn").click(() => {
         const {id, pw} = idPwValidator();
         if(id !== "" && pw !== "") {
-            $.post("loginSubmit.php", {id, pw}, (data, status) => {
+            $.post("login.php", {id, pw}, (data, status) => {
                 if(status === "success" && data === "success") {
                     alert("로그인 되었습니다.")
                     setToLoggedIn(id);
