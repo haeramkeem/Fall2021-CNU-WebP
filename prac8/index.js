@@ -1,46 +1,63 @@
 const eventDataSend = (event) => { event.originalEvent.dataTransfer.setData('text',event.target.id)};
 const setPreventDefault = (event) => { event.preventDefault(); }
 
-let idx = 0;
+function incIdx() {
+    const idx = parseInt(localStorage.getItem("idx"))
+    localStorage.setItem("idx", idx + 1);
+}
+
+function render() {
+    $("#plans").html("");
+    $("#today").html("");
+    $("#tomorrow").html("");
+    for(let i = 0; i < localStorage.length; i++) {
+        const eid = localStorage.key(i);
+        if(eid === "idx") {continue;}
+        const par = localStorage.getItem(eid).split("->")[0];
+        const plan = localStorage.getItem(eid).split("->")[1];
+        switch(par) {
+            case "plans" :
+                $("#plans").append(`<div class="plan" id="${eid}" draggable="true">${plan}</div>`); break;
+            case "today" : 
+                $("#today").append(`<div class="plan" id="${eid}" draggable="true">${plan}</div>`); break;
+            case "tomorrow" : 
+                $("#tomorrow").append(`<div class="plan" id="${eid}" draggable="true">${plan}</div>`); break;
+        }
+    }
+}
+
 $(document).ready(function(){
+    // init idx
+    if(!localStorage.getItem("idx")) {
+        localStorage.setItem("idx", "0");
+    }
+
     // add plan
     $("#add-plan-btn").click(() => {
         const plan = $("#add-plan-input").val();
         $("#add-plan-input").val("");
-        $("#plans").append(`<div class="plan" id="plan-${idx}" draggable="true">${plan}</div>`);
-        $(`#plan-${idx}`).on("dragstart", eventDataSend);
-        idx++;
+
+        const idx = localStorage.getItem("idx");
+        const id = `plan-${idx}`;
+
+        localStorage.setItem(id, `plans->${plan}`);
+        $("#plans").append(`<div class="plan" id="${id}" draggable="true">${plan}</div>`);
+        $(`#${id}`).on("dragstart", eventDataSend);
+        incIdx();
     });
 
     // read btn
     $("#readBtn").click(function() {
-        const img1 = localStorage.getItem("img1");
-        const img2 = localStorage.getItem("img2");
-        const img3 = localStorage.getItem("img3");
-
-        if (!img1 && !img2 && !img3){
-          alert("바구니에 담겨 있는 이미지가 없습니다.");
-        }
-
-        if(img1 != undefined) {
-            $("#img1").appendTo(`#${img1}`);
-        }
-
-        if(img2 != undefined){
-            $("#img2").appendTo(`#${img2}`);
-        }
-        if(img3 != undefined) {
-            $("#img3").appendTo(`#${img3}`);
-        }
+        render();
     });
 
     // clear btn
     $("#clearBtn").click(function() {
-        $("#img1").appendTo("#div1"); 
-        $("#img2").appendTo("#div1");
-        $("#img3").appendTo("#div1");
-        
-        localStorage.clear();
+        $(".plan").each((idx, el) => {
+            if(localStorage.getItem(el.id) === "plans") { return; }
+            localStorage.removeItem(el.id);
+        });
+        render();
     });
 
     // on drag over
@@ -50,7 +67,8 @@ $(document).ready(function(){
     $("table").on("drop", (event) => {
         event.preventDefault();
         const id = event.originalEvent.dataTransfer.getData("text");
-        event.target.appendChild(document.getElementById(id));
-        localStorage.setItem(id, event.target.id);
+        const el = document.getElementById(id);
+        event.target.appendChild(el);
+        localStorage.setItem(id, `${event.target.id}->${el.innerText}`);
     })
 });
