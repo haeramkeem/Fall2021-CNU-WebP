@@ -15,8 +15,8 @@ td {
 
 .plan {
     display: inline-block;
-    border: 1px solid #aaaaaa;
-    border-radius: 5px;
+    border: 1px solid black;
     background-color: lightgray;
-    padding: 0px 20px 0px 20px;
+    width: 100px;
+    margin: 5px;
 }
