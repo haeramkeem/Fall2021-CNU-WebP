@@ -1,14 +1,19 @@
+const eventDataSend = (event) => (event.originalEvent.dataTransfer.setData('text',evt.target.id));
+
+let idx = 0;
 $(document).ready(function(){
+    // add plan
+    $("#add-plan-btn").click(() => {
+        const plan = $("#add-plan-input").val();
+        $("#add-plan-input").val("");
+        $("#div1").append(`<div class="plan" id="plan-${idx}">${plan}</div>`);
+        idx++;
+    });
+
     //dragstart
-    $("#img1").on("dragstart", function(evt){
-        evt.originalEvent.dataTransfer.setData('text',evt.target.id);
-    });
-    $("#img2").on("dragstart", function (evt) {
-        evt.originalEvent.dataTransfer.setData('text', evt.target.id);
-    });
-    $("#img3").on("dragstart", function (evt) {
-        evt.originalEvent.dataTransfer.setData('text', evt.target.id);
-    });
+    $("#img1").on("dragstart", eventDataSend);
+    $("#img2").on("dragstart", eventDataSend);
+    $("#img3").on("dragstart", eventDataSend);
     
     $("#readBtn").click(function() {
         const img1 = localStorage.getItem("img1");
@@ -22,6 +27,7 @@ $(document).ready(function(){
         if(img1 != undefined) {
             $("#img1").appendTo(`#${img1}`);
         }
+
         if(img2 != undefined){
             $("#img2").appendTo(`#${img2}`);
         }
