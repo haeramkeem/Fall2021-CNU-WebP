@@ -1,16 +1,14 @@
-img {
-    width: 200px;
+table {
+    border: 1px solid #aaaaaa;
+    border-collapse: collapse;
 }
 
-#div2, #div3 {
-    width: 800px;
+th, td {
+    width: 150px;
+    border: 1px solid #aaaaaa;
+    border-collapse: collapse;
+}
+
+td {
     height: 200px;
-    padding: 10px;
-    border: 1px solid black;
-    margin: 1%;
-}
-
-input {
-    margin-top: 1%;
-    margin-bottom: 1%;
 }

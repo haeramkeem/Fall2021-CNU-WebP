@@ -7,25 +7,31 @@
     <meta charset="UTF-8">
 </head>
 <body>
-    <div id="div1">
-        <img src="img1.jpg" draggable="true" id="img1">
-        <img src="img2.jpg" draggable="true" id="img2">
-        <img src="img3.jpg" draggable="true" id="img3">
-    </div>
-
     <div>
         <input type="button" id="readBtn" value="Read">
         <input type="button" id="clearBtn" value="Clear">
     </div>
-
-    <div>A 바구니</div>
-    <div id="div2">
-        
-    </div>
     
-    <div>B 바구니</div>
-    <div id="div3">
-        
+    <div>
+        <input type="text">
+        <input type="button" id="add-plan" value="계획 추가">
     </div>
+
+    <div id="div1"></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>오늘</th>
+                <th>내일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><div id="div2"></div></td>
+                <td><div id="div3"></div></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
