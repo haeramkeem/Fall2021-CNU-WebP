@@ -1,4 +1,5 @@
-const eventDataSend = (event) => (event.originalEvent.dataTransfer.setData('text',evt.target.id));
+const eventDataSend = (event) => { event.originalEvent.dataTransfer.setData('text',event.target.id)};
+const setPreventDefault = (event) => { event.preventDefault(); }
 
 let idx = 0;
 $(document).ready(function(){
@@ -6,15 +7,12 @@ $(document).ready(function(){
     $("#add-plan-btn").click(() => {
         const plan = $("#add-plan-input").val();
         $("#add-plan-input").val("");
-        $("#div1").append(`<div class="plan" id="plan-${idx}">${plan}</div>`);
+        $("#plans").append(`<div class="plan" id="plan-${idx}" draggable="true">${plan}</div>`);
+        $(`#plan-${idx}`).on("dragstart", eventDataSend);
         idx++;
     });
 
-    //dragstart
-    $("#img1").on("dragstart", eventDataSend);
-    $("#img2").on("dragstart", eventDataSend);
-    $("#img3").on("dragstart", eventDataSend);
-    
+    // read btn
     $("#readBtn").click(function() {
         const img1 = localStorage.getItem("img1");
         const img2 = localStorage.getItem("img2");
@@ -36,6 +34,7 @@ $(document).ready(function(){
         }
     });
 
+    // clear btn
     $("#clearBtn").click(function() {
         $("#img1").appendTo("#div1"); 
         $("#img2").appendTo("#div1");
@@ -44,24 +43,14 @@ $(document).ready(function(){
         localStorage.clear();
     });
 
-    $("#div2").on("dragover", function (e){ e.preventDefault(); });
-    $("#div3").on("dragover", function (e){ e.preventDefault(); });
+    // on drag over
+    $("table").on("dragover", setPreventDefault);
 
-
-
-    //drop
-    $("#div2").on("drop", function(ev){
-        ev.preventDefault();
-        var data = ev.originalEvent.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-        localStorage.setItem(data, "div2");
-    });
-
-     //drop
-     $("#div3").on("drop", function(ev){
-        ev.preventDefault();
-        var data = ev.originalEvent.dataTransfer.getData("text");
-        ev.target.appendChild(document.getElementById(data));
-        localStorage.setItem(data, "div3");
-    });
+    // on drop
+    $("table").on("drop", (event) => {
+        event.preventDefault();
+        const id = event.originalEvent.dataTransfer.getData("text");
+        event.target.appendChild(document.getElementById(id));
+        localStorage.setItem(id, event.target.id);
+    })
 });
