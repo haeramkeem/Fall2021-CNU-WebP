@@ -1,0 +1,16 @@
+img {
+    width: 200px;
+}
+
+#div2, #div3 {
+    width: 800px;
+    height: 200px;
+    padding: 10px;
+    border: 1px solid black;
+    margin: 1%;
+}
+
+input {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
