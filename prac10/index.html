@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title> 11월 17일 퀴즈 </title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="index.js"></script>
+    </head>
+    <body>
+        이름 : <input type="text" id="name"><br><br>
+        국어 : <input type="text" id="korean">  수학 : <input type="text" id="math"> 영어 : <input type="text" id="english"><br><br>
+        학과 :
+        <select>
+            <option>컴퓨터공학과</option>
+            <option>인공지능학과</option>
+            <option>수학과</option>
+        </select>
+        <br><br>
+        <input type="button" id="save" value="저장">
+        <br><br>
+        <hr>
+        과목 : <input type="checkbox" id="korean-check">
+        <label for="kor1">Koeran</label>
+        <input type="checkbox" id="math-check">
+        <label for="Math1">Math</label>
+        <input type="checkbox" id="english-check">
+        <label for="Eng1">English</label><br><br>
+        학과 :
+        <select>
+            <option>모두</option>
+            <option>컴퓨터공학과</option>
+            <option>인공지능학과</option>
+            <option>수학과</option>
+        </select>
+        <br><br>
+        정렬 :
+        <select>
+            <option>오름차순</option>
+            <option>내림차순</option>
+        </select>
+        <br><br>
+        <input type="button" value="검색" id="search">
+        <br><br>
+        <hr>
+        <ul id="search-result"></ul>
+    </body>
+</html>
