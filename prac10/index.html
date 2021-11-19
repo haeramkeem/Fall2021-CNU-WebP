@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html>
     <head>
-        <title> 11월 17일 퀴즈 </title>
+        <title>prac10</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -11,7 +11,7 @@
         이름 : <input type="text" id="name"><br><br>
         국어 : <input type="text" id="korean">  수학 : <input type="text" id="math"> 영어 : <input type="text" id="english"><br><br>
         학과 :
-        <select>
+        <select id="dept-select">
             <option>컴퓨터공학과</option>
             <option>인공지능학과</option>
             <option>수학과</option>
@@ -27,7 +27,7 @@
         <input type="checkbox" id="english-check">
         <label for="Eng1">English</label><br><br>
         학과 :
-        <select>
+        <select id="search-dept-select">
             <option>모두</option>
             <option>컴퓨터공학과</option>
             <option>인공지능학과</option>
@@ -35,9 +35,9 @@
         </select>
         <br><br>
         정렬 :
-        <select>
-            <option>오름차순</option>
-            <option>내림차순</option>
+        <select id="order-select">
+            <option value="asc">오름차순</option>
+            <option value="dsc">내림차순</option>
         </select>
         <br><br>
         <input type="button" value="검색" id="search">
