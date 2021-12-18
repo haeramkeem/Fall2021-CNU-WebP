@@ -1,4 +1,4 @@
-# 이론05 - PHP 개요
+# 05 - PHP
 #opencse/웹프로그래밍
 
 ## Case sensitivity

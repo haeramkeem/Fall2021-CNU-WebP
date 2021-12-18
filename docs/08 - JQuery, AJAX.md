@@ -1,4 +1,4 @@
-# 이론08 - JQuery, AJAX
+# 08 - JQuery, AJAX
 #opencse/웹프로그래밍
 
 ## CDN Installation

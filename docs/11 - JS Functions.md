@@ -1,4 +1,4 @@
-# 이론11 - JS Functions
+# 11 - JS Functions
 #opencse/웹프로그래밍
 
 ## Self-invoking

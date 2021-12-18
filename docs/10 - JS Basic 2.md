@@ -1,4 +1,4 @@
-# 이론 10 - JS Basic 2
+# 10 - JS Basic 2
 #opencse/웹프로그래밍
 
 ## Array 몰랐던점
@@ -12,7 +12,7 @@ for(const el of arr) {
 ```
 * 뒤에 가서 또 나오겠지만 ::배열의 순회에는 **for-of**를 써야 하고 객체의 순회에는 **for-in**을 써야 한다 - 순서가 중요한 경우에는 **for-in**을, 순서가 중요하지 않은 경우에는 **for-of**를 사용해라::
 ### 배열의 출력
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB%2010%20-%20JS%20Basic%202/Screen%20Shot%202021-11-11%20at%202.07.08%20PM.png)
+![](10%20-%20JS%20Basic%202/Screen%20Shot%202021-11-11%20at%202.07.08%20PM.png)
 * innerHTML에 배열을 넣으면 위처럼 나온다
 ### 배열 인덱스로 값 넣기
 ```
@@ -20,7 +20,7 @@ const fruits = ["Banana", "Orange", "Apple"];
 fruits[6] = "Lemon";
 ```
 * 위 코드를 실행시키면
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB%2010%20-%20JS%20Basic%202/Screen%20Shot%202021-11-11%20at%202.11.43%20PM.png)
+![](10%20-%20JS%20Basic%202/Screen%20Shot%202021-11-11%20at%202.11.43%20PM.png)
 * OutOfBounds에러가 나는게 아니고 위처럼 저장된다
 ### Array() 생성자의 인자
 * `new Array(10, 20);`은 배열에 10과 20을 넣어주지만
@@ -97,11 +97,11 @@ Object { constructor: f Person(), [[Prototype]] }
 ```
 * 그리고 `.prototype`에 보면 `constructor()`라는 함수가 있다는 것을 알 수 있는데
 * 이놈이 아까 선언한 생성자를 가리키게 된다
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB%2010%20-%20JS%20Basic%202/Screen%20Shot%202021-11-13%20at%2012.21.10%20AM.png)
+![](10%20-%20JS%20Basic%202/Screen%20Shot%202021-11-13%20at%2012.21.10%20AM.png)
 * 따라서 위와 같은 구조가 된다
 * ::함수에는 **prototype property**가 있어서 **property**를 참조할 수 있고 **property**에는 **constructor**가 있어서 다시 원래 함수를 가리키게 되는 원형적이라고 할 수 있는 방식::이다
 * 그리고 저기 보면 **__proto__**라는 놈이 있는데 이놈은 ::생성자를 이용해 생성된 객체에 포함되어 원본 **prototype**을 참조할 수 있게 해주는 것::이다
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB%2010%20-%20JS%20Basic%202/Screen%20Shot%202021-11-13%20at%2012.26.21%20AM.png)
+![](10%20-%20JS%20Basic%202/Screen%20Shot%202021-11-13%20at%2012.26.21%20AM.png)
 * 즉, 이렇게 된다 이거임
 * ::복사되는 원본객체를 **Prototype Object**::라 하고 ::생성된 객체에 있는 **__proto__**를 **Prototype Link**:: 라 하며 ::**Prototype Object**와 **Prototype Link**를 합쳐서 **Prototype**::라고 용어를 사용하더라
 #### 생성자 선언 종합
@@ -189,7 +189,7 @@ console.log(obj.uname);
 * 이정도만 숙지하고 나머지는 필요할때 찾아보자
 * [현재시간](https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_new)
 * [날짜 지정](https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_new_all)
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB%2010%20-%20JS%20Basic%202/Screen%20Shot%202021-11-11%20at%203.27.17%20PM.png)
+![](10%20-%20JS%20Basic%202/Screen%20Shot%202021-11-11%20at%203.27.17%20PM.png)
 - - - -
 ## Boolean
 * 이건 좀 알고있어라 - ::truthy와 falsy를 boolean으로 바꿔주는 것::`!!(falsy expression)`

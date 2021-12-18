@@ -1,13 +1,13 @@
-# 이론12 - HTML, JS, HTTP
+# 12 - HTML, JS, HTTP
 #opencse/웹프로그래밍
 
 ## JS 짜투리
 ### JS Errors
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB12%20-%20HTML,%20JS,%20HTTP/Screen%20Shot%202021-11-24%20at%202.31.09%20PM.png)
+![](12%20-%20HTML,%20JS,%20HTTP/Screen%20Shot%202021-11-24%20at%202.31.09%20PM.png)
 * Error 객체의 name property에 다음과 같은 값들이 들어갈 수 있댄다
 ### JS Scope
 #### Function Scope
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB12%20-%20HTML,%20JS,%20HTTP/Screen%20Shot%202021-11-24%20at%202.33.00%20PM.png)
+![](12%20-%20HTML,%20JS,%20HTTP/Screen%20Shot%202021-11-24%20at%202.33.00%20PM.png)
 * **var**을 쓴다고 무조건 Global scope가 되는건 아닌가봄 - ::함수 안에 var을 적으면 Function scope가 된다::
 #### “Use Strict”
 * 매번 이거 볼때마다 뭔가 했는데
@@ -56,7 +56,7 @@
 * **Media Independent** : ::데이터의 처리 방법만 **content-type**으로 명시하면 어떠한 것이든 송수신할 수 있음::
 * **Stateless** : ::서버는 클라이언트의 현재 상태를 저장하지 않음 - 요청을 보낼때마다 문맥을 알려줘야 한다::
 ### Message Format
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB12%20-%20HTML,%20JS,%20HTTP/Screen%20Shot%202021-11-24%20at%204.17.41%20PM.png)
+![](12%20-%20HTML,%20JS,%20HTTP/Screen%20Shot%202021-11-24%20at%204.17.41%20PM.png)
 * 일단 **Start line**, **Header**, **empty line**, **Body**로 구성됨
 * 뭐 ::Start line이 나오고 Header가 나온 뒤에 한칸의 개행을 두고 Body가 등장하는 형태::
 * Header에는 여러가지 header들이 들어가게 되는데 뭐가 들어가는지는 필요할때마다 찾아보고

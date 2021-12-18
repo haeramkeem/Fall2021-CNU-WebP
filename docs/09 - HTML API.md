@@ -1,7 +1,5 @@
-# 이론09 - HTML API
+# 09 - HTML API
 #opencse/웹프로그래밍
-
-::pdf보면서 상세한거 더 공부해서 시험봐야됨::
 
 ## Drag & Drop
 ### Overview
@@ -47,7 +45,7 @@ function _func(event) {
 ## Web storage
 ### Overview
 * **Cookie**는 ::작은 데이터를 저장하고 서버로 Request를 날릴때 같이 날라감::
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB09%20-%20HTML%20API/Screen%20Shot%202021-11-03%20at%202.16.11%20PM.png)
+![](09%20-%20HTML%20API/Screen%20Shot%202021-11-03%20at%202.16.11%20PM.png)
 * **WebStorage**는 ::많은 데이터를 저장하고 서버로 날라가지 않음::
 	* **LocalStorage**는 ::도메인 기준으로 데이터가 저장되고 브라우저를 닫아도 없어지지 않아 장기적인 데이터 보관을 위한 것::
 	* **SessionStorage**는 ::세션(탭)기준으로 데이터가 저장되고 탭을 닫으면 없어져 단기적인 데이터 보관을 위한 것::
@@ -83,7 +81,7 @@ window.sessionStorage.clear();
 ## Web worker
 ### Overview
 * ::시간이 오래걸리는 작업을 백그라운드로 돌리는 것::
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB09%20-%20HTML%20API/Screen%20Shot%202021-11-03%20at%202.26.34%20PM.png)
+![](09%20-%20HTML%20API/Screen%20Shot%202021-11-03%20at%202.26.34%20PM.png)
 * ::DOM을 조작해 UI를 변경하는 것을 직접적으로 할 수 없음::
 	* ::UI Thread로 보내 거기서 조작하도록 해야 한다::
 * **전용 워커(Dedicated worker)**는 ::워커를 생성한 페이지에서만 돌아가는 것::
@@ -152,9 +150,9 @@ navigator.geolocation.clearWatch();
 * ::파일을 수정할 수는 없고 오직 읽기만 가능::
 ### Document
 #### File
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB09%20-%20HTML%20API/Screen%20Shot%202021-11-03%20at%202.44.05%20PM.png)
+![](09%20-%20HTML%20API/Screen%20Shot%202021-11-03%20at%202.44.05%20PM.png)
 #### FileReader
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB09%20-%20HTML%20API/Screen%20Shot%202021-11-03%20at%202.44.23%20PM.png)
+![](09%20-%20HTML%20API/Screen%20Shot%202021-11-03%20at%202.44.23%20PM.png)
 - - - -
 ## Editable
 ### Overview
@@ -198,16 +196,16 @@ ws.onmessage = (event) => {
 }; 
 ```
 ### Document
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB09%20-%20HTML%20API/Screen%20Shot%202021-11-03%20at%202.56.16%20PM.png)
+![](09%20-%20HTML%20API/Screen%20Shot%202021-11-03%20at%202.56.16%20PM.png)
 ### Example
 * [Web Socket Example](https://ko.javascript.info/websocket#ref-663)
 - - - -
 ## Server Sent Event
 * SetInterval같은거 안쓰고 일정 시간간격을 두고 계속 Request를 보내서 값을 가져오는 방법
 * **Event Source**라는 객체를 이용
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB09%20-%20HTML%20API/Screen%20Shot%202021-12-18%20at%209.29.03%20AM.png)
+![](09%20-%20HTML%20API/Screen%20Shot%202021-12-18%20at%209.29.03%20AM.png)
 * 이렇게 하면 되고
-![](%E1%84%8B%E1%85%B5%E1%84%85%E1%85%A9%E1%86%AB09%20-%20HTML%20API/Screen%20Shot%202021-12-18%20at%209.29.29%20AM.png)
+![](09%20-%20HTML%20API/Screen%20Shot%202021-12-18%20at%209.29.29%20AM.png)
 * 이런 이벤트들이 있댄다
 ### Example
 * [EventSource](http://www.w3schools.com/html/tryit.asp?filename=tryhtml5_sse)
