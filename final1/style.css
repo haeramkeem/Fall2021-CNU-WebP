@@ -1,0 +1,7 @@
+ol[level="1"] {
+    list-style: upper-alpha;
+}
+
+ol[level="2"] {
+    list-style: lower-roman;
+}
